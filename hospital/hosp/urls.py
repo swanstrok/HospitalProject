@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers
 
 from .views import DepartmentAPIViewSet, PatientDischargeAPIViewSet, PatientSickAPIViewSet, \
@@ -11,8 +11,7 @@ router.register(r'patients/discharged', PatientDischargeAPIViewSet, basename='di
 router.register(r'patients', AllPatientAPIViewSet, basename='all_patients')
 
 urlpatterns = [
-    # path('patients/sick/', PatientSickAPIViewSet),
-    # path('patients/discharged/', PatientDischargeAPIViewSet)
+    path('drf-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns += router.urls
