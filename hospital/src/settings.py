@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'hosp.apps.HospConfig',
     'rest_framework',
     'import_export',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
