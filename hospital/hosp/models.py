@@ -40,10 +40,11 @@ class Patient(models.Model):
     diagnosis = models.CharField(verbose_name='Предварительный диагноз', max_length=255)
     datetime_receipt = models.DateTimeField(verbose_name='Дата и время поступления',
                                             auto_now_add=True, db_index=True)
-    datetime_discharge = models.DateField(verbose_name='Дата выписки', null=True, blank=True,
-                                          db_index=True)
     department_id = models.ForeignKey(verbose_name='Отделение', to='Department',
                                       on_delete=models.CASCADE)
+    is_discharge = models.BooleanField(verbose_name='Выписан', default=False, db_index=True)
+    datetime_discharge = models.DateField(verbose_name='Дата выписки', null=True, blank=True,
+                                          db_index=True)
 
     def __str__(self):
         return f'{self.name} {self.surname}'
@@ -51,3 +52,4 @@ class Patient(models.Model):
     class Meta:
         verbose_name = 'Пациент'
         verbose_name_plural = 'Пациенты'
+        ordering = ('id', 'name')
