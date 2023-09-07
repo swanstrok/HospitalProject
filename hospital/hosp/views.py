@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 from .models import Department, Patient
 from .serializers import DepartmentSerializer, PatientSerializer
@@ -13,8 +13,9 @@ from .serializers import DepartmentSerializer, PatientSerializer
 class DepartmentAPIViewSet(viewsets.ModelViewSet):
     """ViewSet для отображения отделений стационара"""
     serializer_class = DepartmentSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['name']
+    ordering_fields = ['id', 'name']
 
     def get_queryset(self):
         queryset = Department.objects.all()
