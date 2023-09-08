@@ -10,7 +10,7 @@ from .models import Patient, Department
 @admin.register(Department)
 class DepartmentAdmin(ImportExportModelAdmin):
     list_display = ('name',)
-    list_filter = ('name',)
+    list_filter = ('profile', 'name')
 
 
 @admin.register(Patient)
@@ -20,5 +20,5 @@ class PatientAdmin(ImportExportModelAdmin):
         'diagnosis', 'datetime_receipt', 'department_id', 'is_discharge', 'datetime_discharge', )
     list_filter = (
         'is_discharge', 'datetime_discharge', 'datetime_receipt', 'department_id', 'blood_type',
-        'blood_rh', 'diagnosis')
+        'blood_rh')
     list_display_links = ('id', 'surname', 'department_id', 'diagnosis')

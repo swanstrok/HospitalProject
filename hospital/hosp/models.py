@@ -5,7 +5,13 @@ from django.db import models
 
 class Department(models.Model):
     """Класс отделений стационара"""
+    PROFILE_CHOICE = (
+        (1, 'Терапевтический'),
+        (2, 'Хирургический'),
+    )
+
     name = models.CharField(max_length=255, verbose_name='Название', unique=True)
+    profile = models.SmallIntegerField(verbose_name='Профиль', choices=PROFILE_CHOICE)
 
     def __str__(self):
         return self.name
